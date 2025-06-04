@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | MW Training</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== GLOBAL STYLES ===== */
+        :root {
+            --primary: #0056b3;
+            --secondary: #000000;
+            --accent: #f4c430;
+            --light: #f8f9fa;
+            --dark: #222;
+            --text: #444;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--text);
+            background-color: #f9f9f9;
+            padding-top: 130px; /* Added to prevent content hiding under fixed header */
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            background: var(--secondary);
+            position: Absolute;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 90px;
+            transition: transform 0.3s;
+        }
+        
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a.active {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        /* ===== ABOUT SECTION ===== */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-top: 20px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .mission-vision {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .mission, .vision {
+            background: rgba(0, 86, 179, 0.05);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .mission h3, .vision h3 {
+            display: flex;
+            align-items: center;
+            color: var(--primary);
+        }
+        
+        .mission h3 i, .vision h3 i {
+            margin-right: 15px;
+            color: var(--accent);
+        }
+        
+        /* ===== OWNER PROFILE SECTION ===== */
+        .owner-section {
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .owner-container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .owner-profile {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid rgba(244, 196, 48, 0.3);
+        }
+        
+        .owner-image {
+            flex: 0 0 300px;
+        }
+        
+        .owner-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--accent);
+        }
+        
+        .owner-info {
+            flex: 1;
+        }
+        
+        .owner-info h2 {
+            color: var(--accent);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .owner-title {
+            color: var(--accent);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .owner-qualifications {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .qualification-badge {
+            background: rgba(244, 196, 48, 0.2);
+            color: var(--accent);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .owner-bio {
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        
+        .owner-expertise {
+            margin: 30px 0;
+        }
+        
+        .expertise-title {
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            border-bottom: 2px solid rgba(244, 196, 48, 0.3);
+            padding-bottom: 10px;
+        }
+        
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .expertise-item {
+            background: rgba(244, 196, 48, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .leadership-section {
+            margin: 30px 0;
+        }
+        
+        .value-proposition {
+            background: rgba(244, 196, 48, 0.15);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            margin-top: 30px;
+            position: relative;
+        }
+        
+        .value-proposition::before {
+            content: """;
+            font-size: 5rem;
+            color: rgba(244, 196, 48, 0.3);
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            line-height: 1;
+        }
+        
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo img {
+            height: 60px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links h3, .footer-contact h3 {
+            color: var(--accent);
+            margin-bottom: 25px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .owner-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .owner-image {
+                flex: 0 0 auto;
+                max-width: 300px;
+            }
+            
+            .qualification-badge {
+                margin: 5px auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding-top: 100px; /* Adjusted for mobile header */
+            }
+            
+            header {
+                padding: 15px 0;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--secondary);
+                flex-direction: column;
+                padding: 100px 30px 30px;
+                transition: all 0.5s ease;
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                left: 0;
+                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+                margin-left: 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+                position: relative;
+                z-index: 1001;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .mission-vision {
+                grid-template-columns: 1fr;
+            }
+            
+            .owner-profile {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="index.html"><img src="logo.png" alt="MW Training Logo"></a>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+                <div class="mobile-menu" id="mobileMenu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section>
+        <div class="container">
+            <h1>About Our Company</h1>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>At MW Training and Productivity Consultants Ltd., we specialize in delivering customized training, strategic consultancy, and systems optimization to elevate organizational performance across Zimbabwe.</p>
+                    
+                    <p>Founded in 2010, our experienced team works with government bodies, private sector entities, and NGOs to unlock productivity potential, foster innovation, and build resilient institutions that drive national development.</p>
+                    
+                    <div class="mission-vision">
+                        <div class="mission">
+                            <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                            <p>To enhance operational efficiency and foster sustainable growth through tailored training and consultancy services that address the unique challenges of Zimbabwean organizations.</p>
+                        </div>
+                        <div class="vision">
+                            <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                            <p>To be the leading force in transforming Zimbabwean organizations into efficient, productive, and sustainable entities that compete effectively in the global marketplace.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="myteam.png" alt="Our Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Owner Profile Section -->
+    <section class="owner-section">
+        <div class="container owner-container">
+            <div class="owner-profile">
+                <div class="owner-image">
+                    <img src="owner.png" alt="Willias Madzimure">
+                </div>
+                <div class="owner-info">
+                    <h2>Willias Madzimure</h2>
+                    <div class="owner-title">Principal Management & Productivity Consultant</div>
+                    
+                    <div class="owner-qualifications">
+                        <span class="qualification-badge">MBA</span>
+                        <span class="qualification-badge">PGD Management Services</span>
+                        <span class="qualification-badge">F.I.M.S (Dip IMS)</span>
+                        <span class="qualification-badge">Systems & Organizational Efficiency Specialist</span>
+                    </div>
+                    
+                    <p class="owner-bio">
+                        Willias Madzimure is a seasoned management and productivity consultant with over three decades of experience spanning industrial engineering, systems analysis, organizational development, and public sector reform. With a robust academic background, he has consistently delivered practical, data-driven solutions to enhance institutional efficiency and productivity.
+                    </p>
+                    
+                    <div class="owner-expertise">
+                        <h3 class="expertise-title">Professional Expertise</h3>
+                        <p>
+                            Willias began his career as a Work Study Officer (Ferco Group), where he specialized in ergonomics, method improvement and time measurement to optimize operational workflows. He later served as a Systems Analyst and advanced to Organisation and Methods (O&M) Manager (Grain Marketing Board), leading cross-functional projects focused on restructuring, job evaluation, and performance management systems in both public and private sectors.
+                        </p>
+                    </div>
+                    
+                    <div class="owner-expertise">
+                        <h3 class="expertise-title">Consulting Focus Areas</h3>
+                        <div class="expertise-grid">
+                            <div class="expertise-item">Business Process Reengineering (BPR)</div>
+                            <div class="expertise-item">Work Measurement & Method Study</div>
+                            <div class="expertise-item">Organizational Design & Restructuring</div>
+                            <div class="expertise-item">Performance Management Systems</div>
+                            <div class="expertise-item">Capacity Development & Change Management</div>
+                            <div class="expertise-item">Public Sector Productivity Enhancement</div>
+                        </div>
+                    </div>
+                    
+                    <div class="leadership-section">
+                        <h3 class="expertise-title">Leadership Experience</h3>
+                        <p>
+                            Willias Madzimure's career in public service extends beyond consulting. As a long-serving Member of Parliament and former Deputy Speaker of Parliament, he has gained deep insights into governance, policy formulation, and accountability mechanisms. He has chaired and participated in key parliamentary committees (e.g Public Accounts), leveraging his management acumen to promote transparency, good governance, and anti-corruption reforms.
+                        </p>
+                    </div>
+                    
+                    <div class="value-proposition">
+                        <h3>Value Proposition</h3>
+                        <p>
+                            Willias brings a unique blend of technical expertise, leadership, and political insight—making him especially effective in advising both government institutions and private enterprises on productivity, organizational renewal, and system improvement strategies.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMTAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNmNGMzMDsiIC8+PHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojMDA1NmIzOyIgLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48dGV4dCB4PSI1MCIgeT0iNjUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyNCIgZmlsbD0idXJsKCNncmFkKSIgZm9udC13ZWlnaHQ9ImJvbGQiPk1XIFRyYWluaW5nPC90ZXh0Pjwvc3ZnPg==" alt="MW Training Logo">
+                    <p>Empowering Organizations through Training, Innovation & Productivity Solutions</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 60A Hibiscus Road, Lochinvar, Southerton, Harare</p>
+                    <p><i class="fas fa-phone"></i> +263 719420455</p>
+  <p><i class="fas fa-phone"></i> +263771264493</p>
+                    <p><i class="fas fa-envelope"></i> infomwconsults@gmail.com</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; <span id="year"></span> MW Training and Productivity Consultants Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle - Fixed Version
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+        let menuOpen = false;
+        
+        mobileMenu.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            
+            // Toggle between hamburger and close icon
+            const icon = this.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                menuOpen = true;
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                menuOpen = false;
+            }
+        });
+
+        // Close menu when clicking outside of it
+        document.addEventListener('click', function(event) {
+            const isClickInsideNav = navLinks.contains(event.target);
+            const isClickOnMenu = mobileMenu.contains(event.target);
+            
+            if (menuOpen && !isClickInsideNav && !isClickOnMenu) {
+                navLinks.classList.remove('active');
+                mobileMenu.querySelector('i').classList.remove('fa-times');
+                mobileMenu.querySelector('i').classList.add('fa-bars');
+                menuOpen = false;
+            }
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('#navLinks a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenu.querySelector('i').classList.remove('fa-times');
+                mobileMenu.querySelector('i').classList.add('fa-bars');
+                menuOpen = false;
+            });
+        });
+
+        // Highlight active page
+        const currentPage = location.pathname.split('/').pop();
+        document.querySelectorAll('#navLinks a').forEach(link => {
+            if(link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+            }
+        });
+
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
